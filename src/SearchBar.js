@@ -12,6 +12,7 @@ export default function SearchBar({ query, setQuery }) {
             </label>
             <input
               type="text"
+              placeholder="Please search for a movie title"
               className="form-control"
               id="movieTitle"
               aria-describedby="movieTitle"

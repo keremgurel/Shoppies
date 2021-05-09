@@ -43,7 +43,7 @@ export default function App() {
       setResults(updatedSearchResults);
       if (newNominations.length === 5) {
         alert(
-          'Great! You have nominated 5 movies 🎉. Please go ahead and submit your nomination!'
+          'Great! You have nominated 5 movies 🎉. Please go ahead and submit your nomination at the bottom of the screen!'
         );
       }
     } else {
@@ -85,35 +85,38 @@ export default function App() {
 
   return (
     <div>
-      <h1>The Shoppies</h1>
-      <img className="header-logo" src={ logo } alt="" />
-      <SearchBar query={query} setQuery={fetchResults} />
-      <div className="row">
-        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <SearchResults
-            query={query}
-            results={results}
-            nominate={handleNominate}
-          />
-        </div>
-        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <Nominations
-            nominations={nominations}
-            removeNomination={handleRemoveNomination}
-          />
-        </div>
+      <div className="App-header">
+        The Shoppies
+        <img className="header-logo" src={ logo } alt="" />
+
       </div>
-      {nominations.length === 5 ? (
+        <SearchBar query={query} setQuery={fetchResults} />
         <div className="row">
-          <button
-            onClick={handleSubmitNominations}
-            type="button"
-            className="col btn btn-lg btn-success"
-          >
-            Submit Nominations
-          </button>
+          <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <SearchResults
+              query={query}
+              results={results}
+              nominate={handleNominate}
+            />
+          </div>
+          <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <Nominations
+              nominations={nominations}
+              removeNomination={handleRemoveNomination}
+            />
+          </div>
         </div>
-      ) : null}
+        {nominations.length === 5 ? (
+          <div className="row">
+            <button
+              onClick={handleSubmitNominations}
+              type="button"
+              className="col btn btn-lg btn-success"
+            >
+              Submit Nominations
+            </button>
+          </div>
+        ) : null}
     </div>
   );
 }
