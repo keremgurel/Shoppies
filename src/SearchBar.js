@@ -5,7 +5,7 @@ export default function SearchBar({ query, setQuery }) {
   return (
     <div className="card">
       <div className="card-body">
-        <form>
+        <form onSubmit={e => { e.preventDefault(); }}>
           <div className="mb-3">
             <label htmlFor="movieTitle" className="form-label">
               Movie Title
