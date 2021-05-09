@@ -7,7 +7,7 @@ import SearchResults from './SearchResults';
 import Nominations from './Nominations';
 
 function App() {
-  const [query, setQuery] = useState('The Godfather');         // for query
+  const [query, setQuery] = useState(' ');         // for query
   const [results, setResults] = useState([]);                  // for results
   const [nominations, setNominations] = useState([]);          // for nominations
 
@@ -24,18 +24,26 @@ function App() {
     });
   };
 
-  const handleNominate = (result) => {
+  const handleNominate = resultToNominate => {
     const newNominations = [...nominations];
-    newNominations.push(result);
+    newNominations.push(resultToNominate);
     setNominations(newNominations);
-
     // Update Search results to disable the nominate button
+    const updatedSearchResults = results.map(result => {
+      const resultToReturn = { ...result };
+      if (result.imdbID === resultToNominate.imdbID) {
+        resultToReturn.disabled = true;
+      }
+      return resultToReturn;
+    });
+    setResults(updatedSearchResults);
   };
 
   const handleRemoveNomination = nominationToRemove => {
     const updatedNominations = nominations.filter(
       nomination => nomination.imdbID !== nominationToRemove.imdbID
     );
+    setNominations(updatedNominations);
   }
 
   return (
