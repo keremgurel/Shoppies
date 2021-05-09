@@ -17,7 +17,7 @@ export default function SearchResults() {
                 </button>
             </li>
             <li className="list-group-item">
-                An item{' '}
+                Second item{' '}
                 <button type="button" className="btn btn-success">
                     Nominate
                 </button>
