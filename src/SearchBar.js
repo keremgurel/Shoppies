@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 
-export default function SearchBar() {
+export default function SearchBar({ query, setQuery }) {
   return (
     <div className="card">
       <div className="card-body">
@@ -15,6 +15,8 @@ export default function SearchBar() {
               className="form-control"
               id="movieTitle"
               aria-describedby="movieTitle"
+              value={query}
+              onChange={event => setQuery(event.target.value)}
             />
           </div>
         </form>
