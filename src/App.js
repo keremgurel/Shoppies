@@ -6,10 +6,10 @@ import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 import Nominations from './Nominations';
 
-function App() {
-  const [query, setQuery] = useState(' ');         // for query
-  const [results, setResults] = useState([]);                  // for results
-  const [nominations, setNominations] = useState([]);          // for nominations
+export default function App() {
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
+  const [nominations, setNominations] = useState([]);
 
   const fetchResults = updatedSearchQuery => {
     // Update local state to store the search Query
@@ -68,16 +68,16 @@ function App() {
     setResults(updatedSearchResults);
   };
 
-  // const updateSearchResults = () => {
-  //   // Update Search Results to disable the Nominate Button
-  //   const imdbIDsOfNominations = nominations.map(({ imdbID }) => imdbID);
-  //   const updatedSearchResults = results.map(result => {
-  //     const resultToReturn = { ...result };
-  //     resultToReturn.disabled = imdbIDsOfNominations.includes(result.imdbID);
-  //     return resultToReturn;
-  //   });
-  //   setResults(updatedSearchResults);
-  // };
+  /*const updateSearchResults = () => {
+    // Update Search Results to disable the Nominate Button
+    const imdbIDsOfNominations = nominations.map(({ imdbID }) => imdbID);
+    const updatedSearchResults = results.map(result => {
+      const resultToReturn = { ...result };
+      resultToReturn.disabled = imdbIDsOfNominations.includes(result.imdbID);
+      return resultToReturn;
+    });
+    setResults(updatedSearchResults);
+  };*/
 
   const handleSubmitNominations = () => {
     alert('Congratulations! You have submitted your nominations🎉.');
@@ -85,9 +85,9 @@ function App() {
 
   return (
     <div>
-        <h1>The Shoppies</h1>
-        <img className="header-logo" src={ logo } alt="" />
-        <SearchBar query={query} setQuery={fetchResults} />
+      <h1>The Shoppies</h1>
+      <img className="header-logo" src={ logo } alt="" />
+      <SearchBar query={query} setQuery={fetchResults} />
       <div className="row">
         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <SearchResults
@@ -117,5 +117,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
