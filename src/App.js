@@ -29,18 +29,28 @@ function App() {
   };
 
   const handleNominate = resultToNominate => {
-    const newNominations = [...nominations];
-    newNominations.push(resultToNominate);
-    setNominations(newNominations);
-    // Update Search results to disable the nominate button
-    const updatedSearchResults = results.map(result => {
-      const resultToReturn = { ...result };
-      if (result.imdbID === resultToNominate.imdbID) {
-        resultToReturn.disabled = true;
+    if (nominations.length < 5) {
+      const newNominations = [...nominations];
+      newNominations.push(resultToNominate);
+      setNominations(newNominations);
+      const updatedSearchResults = results.map(result => {
+        const resultToReturn = { ...result };
+        if (result.imdbID === resultToNominate.imdbID) {
+          resultToReturn.disabled = true;
+        }
+        return resultToReturn;
+      });
+      setResults(updatedSearchResults);
+      if (newNominations.length === 5) {
+        alert(
+          'Great! You have nominated 5 movies 🎉. Please go ahead and submit your nomination!'
+        );
       }
-      return resultToReturn;
-    });
-    setResults(updatedSearchResults);
+    } else {
+      alert(
+        'You cannot nominate more than 5 movies! Please go ahead and submit.'
+      );
+    }
   };
 
   const handleRemoveNomination = nominationToRemove => {
@@ -56,31 +66,54 @@ function App() {
       return resultToReturn;
     });
     setResults(updatedSearchResults);
+  };
 
-  }
+  // const updateSearchResults = () => {
+  //   // Update Search Results to disable the Nominate Button
+  //   const imdbIDsOfNominations = nominations.map(({ imdbID }) => imdbID);
+  //   const updatedSearchResults = results.map(result => {
+  //     const resultToReturn = { ...result };
+  //     resultToReturn.disabled = imdbIDsOfNominations.includes(result.imdbID);
+  //     return resultToReturn;
+  //   });
+  //   setResults(updatedSearchResults);
+  // };
+
+  const handleSubmitNominations = () => {
+    alert('Congratulations! You have submitted your nominations🎉.');
+  };
 
   return (
     <div>
         <h1>The Shoppies</h1>
         <img className="header-logo" src={ logo } alt="" />
-      <SearchBar 
-        query={query}
-        setQuery={fetchResults} />
+        <SearchBar query={query} setQuery={fetchResults} />
       <div className="row">
         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <SearchResults 
-            query={query} 
+          <SearchResults
+            query={query}
             results={results}
-            nominations={handleNominate} 
+            nominate={handleNominate}
           />
         </div>
         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <Nominations 
-            nominations={nominations} 
-            emoveNomination={handleRemoveNomination} 
+          <Nominations
+            nominations={nominations}
+            removeNomination={handleRemoveNomination}
           />
         </div>
       </div>
+      {nominations.length === 5 ? (
+        <div className="row">
+          <button
+            onClick={handleSubmitNominations}
+            type="button"
+            className="col btn btn-lg btn-success"
+          >
+            Submit Nominations
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }
