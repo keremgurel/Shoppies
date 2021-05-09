@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
+import logo from './images/shopify-logo.png';
+
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 import Nominations from './Nominations';
@@ -12,7 +14,10 @@ function App() {
 
   return (
     <div>
-      <h1>The Shoppies</h1>
+      <div>
+        <h1>The Shoppies</h1>
+        <img class="header-logo" src={ logo } alt="" />
+      </div>
       <SearchBar query={query} setQuery={setQuery} />
       <div className="row">
         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
