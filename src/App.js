@@ -11,7 +11,7 @@ function App() {
   const [results, setResults] = useState([]);                  // for results
   const [nominations, setNominations] = useState([]);          // for nominations
 
-  const updateSearchResults = updatedSearchQuery => {
+  const fetchResults = updatedSearchQuery => {
     // update local state to store the search query
     setQuery(updatedSearchQuery);
     // make an API call with the updatedSearchQuery
@@ -52,7 +52,7 @@ function App() {
         <img className="header-logo" src={ logo } alt="" />
       <SearchBar 
         query={query}
-        setQuery={updateSearchResults} />
+        setQuery={fetchResults} />
       <div className="row">
         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <SearchResults 
