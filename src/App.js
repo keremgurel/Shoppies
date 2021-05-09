@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import './App.css';
 import logo from './images/shopify-logo.png';
 
-import SearchBar from './SearchBar';
-import SearchResults from './SearchResults';
-import Nominations from './Nominations';
+import SearchBar from './components/SearchBar';
+import SearchResults from './components/SearchResults';
+import Nominations from './components/Nominations';
 
 export default function App() {
   const [query, setQuery] = useState('');
