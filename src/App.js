@@ -81,6 +81,7 @@ export default function App() {
 
   const handleSubmitNominations = () => {
     alert('Congratulations! You have submitted your nominations🎉.');
+    window.location.reload();
   };
 
   return (
