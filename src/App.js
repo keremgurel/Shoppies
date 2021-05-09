@@ -22,23 +22,42 @@ function App() {
         setResults(Search);
       }
     });
-};
+  };
+
+  const handleNominate = (result) => {
+    const newNominations = [...nominations];
+    newNominations.push(result);
+    setNominations(newNominations);
+
+    // Update Search results to disable the nominate button
+  };
+
+  const handleRemoveNomination = nominationToRemove => {
+    const updatedNominations = nominations.filter(
+      nomination => nomination.imdbID !== nominationToRemove.imdbID
+    );
+  }
 
   return (
     <div>
-      <div>
         <h1>The Shoppies</h1>
         <img className="header-logo" src={ logo } alt="" />
-      </div>
       <SearchBar 
         query={query}
         setQuery={updateSearchResults} />
       <div className="row">
         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <SearchResults query={query} />
+          <SearchResults 
+            query={query} 
+            results={results}
+            nominations={handleNominate} 
+          />
         </div>
         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <Nominations />
+          <Nominations 
+            nominations={nominations} 
+            emoveNomination={handleRemoveNomination} 
+          />
         </div>
       </div>
     </div>
