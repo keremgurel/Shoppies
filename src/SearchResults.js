@@ -11,7 +11,7 @@ export default function SearchResults({ query, results, nominate }) {
         <ul className="list-group">
           {results.map(result => (
             <li className="list-group-item" key={result.imdbID}>
-              {result.Title}{' '}
+              {result.Title}{" , "}{result.Year}{" "}
               <button
                 type="button"
                 className="btn btn-success"
