@@ -11,15 +11,18 @@ function App() {
   const [results, setResults] = useState([]);                  // for results
   const [nominations, setNominations] = useState([]);          // for nominations
 
-  const updateSearchResults = (updatedSearchQuery) => {
+  const updateSearchResults = updatedSearchQuery => {
     // update local state to store the search query
     setQuery(updatedSearchQuery);
     // make an API call with the updatedSearchQuery
     fetch(`https://www.omdbapi.com/?s=${updatedSearchQuery}&apikey=e524dabe`)
-      .then(res => res.json())
-      .then(({ Search }) => setResults(Search));
-    // update local state to store the search results
-  };
+    .then(res => res.json())
+    .then(({ Search }) => {
+      if (Search) {
+        setResults(Search);
+      }
+    });
+};
 
   return (
     <div>
