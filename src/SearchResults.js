@@ -2,7 +2,7 @@
 import React from 'react';
 import './index.css';
 
-export default function SearchResults({ query }) {
+export default function SearchResults({ query, results }) {
     return (
       <div className="card">
         <div className="card-body">
@@ -10,18 +10,20 @@ export default function SearchResults({ query }) {
             Search Results for {query}
           </h6>
           <ul className="list-group">
-            <li className="list-group-item">
-                An item{' '}
+            {results.map(({ Title, imdbID }) => (
+            <li className="list-group-item" key={imdbID}>
+                {Title}{' '}
                 <button type="button" className="btn btn-success">
                     Nominate
                 </button>
             </li>
-            <li className="list-group-item">
+            ))}
+            {/* <li className="list-group-item">
                 Second item{' '}
                 <button type="button" className="btn btn-success">
                     Nominate
                 </button>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

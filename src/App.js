@@ -17,7 +17,7 @@ function App() {
     // make an API call with the updatedSearchQuery
     fetch(`https://www.omdbapi.com/?s=${updatedSearchQuery}&apikey=e524dabe`)
       .then(res => res.json())
-      .then(res => console.log('Got the search results as: ', res));
+      .then(({ Search }) => setResults(Search));
     // update local state to store the search results
   };
 
@@ -25,7 +25,7 @@ function App() {
     <div>
       <div>
         <h1>The Shoppies</h1>
-        <img class="header-logo" src={ logo } alt="" />
+        <img className="header-logo" src={ logo } alt="" />
       </div>
       <SearchBar 
         query={query}
