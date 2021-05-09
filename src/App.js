@@ -12,16 +12,20 @@ function App() {
   const [nominations, setNominations] = useState([]);          // for nominations
 
   const fetchResults = updatedSearchQuery => {
-    // update local state to store the search query
+    // Update local state to store the search Query
     setQuery(updatedSearchQuery);
-    // make an API call with the updatedSearchQuery
+    // Make an API Call with the updatedSearchQuery.
     fetch(`https://www.omdbapi.com/?s=${updatedSearchQuery}&apikey=e524dabe`)
-    .then(res => res.json())
-    .then(({ Search }) => {
-      if (Search) {
-        setResults(Search);
-      }
-    });
+      .then(res => res.json())
+      .then(({ Search }) => {
+        // Update local state to store the Search Results.
+        if (Search) {
+          setResults(Search);
+          /* setTimeout(() => {
+            updateSearchResults();
+          }, 1000); */
+        }
+      });
   };
 
   const handleNominate = resultToNominate => {
@@ -44,6 +48,15 @@ function App() {
       nomination => nomination.imdbID !== nominationToRemove.imdbID
     );
     setNominations(updatedNominations);
+    const updatedSearchResults = results.map(result => {
+      const resultToReturn = { ...result };
+      if (result.imdbID === nominationToRemove.imdbID) {
+        resultToReturn.disabled = false;
+      }
+      return resultToReturn;
+    });
+    setResults(updatedSearchResults);
+
   }
 
   return (
