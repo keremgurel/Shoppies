@@ -1,5 +1,3 @@
-# Shopify Fall 2021 Frontend Developer Internship Challenge
-
 # [Live Demo](https://www.shoppies.keremg.com/)
 
 ## Challenge Requirements
